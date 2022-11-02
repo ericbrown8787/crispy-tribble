@@ -1,0 +1,27 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: gainsboro;
+  min-height: 100vh;
+}
+
+h1 {
+  margin: auto
+}
+
+a {
+  text-decoration: none;
+}
+
+
+
+p {
+  color: greenyellow
+}
