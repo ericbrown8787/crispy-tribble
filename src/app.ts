@@ -1,8 +1,9 @@
-const express = require('express');
-const nunjucks = require('nunjucks');
-const axios = require('axios');
-const fs = require('fs');
+#! /usr/bin/env node
 
+import express from 'express';
+import nunjucks from 'nunjucks';
+import axios from 'axios';
+import fs from 'fs';
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -19,13 +20,15 @@ nunjucks.configure('views', {
   express: app,
 });
 
-// ======Page Rendering======
+// ======Page Rendering======s
 app.get('/', (req, res) => {
   res.render('index.njk', globalFields);
+  return { request: req, response: res };
 });
 
 app.get('/info', (req, res) => {
   res.render('info.njk', globalFields);
+  return { request: req, response: res };
 });
 
 app.use((req, res) => {
@@ -38,6 +41,7 @@ app.use((req, res) => {
     notFoundMessage: randomMessage(),
   };
   res.status(404).render('404.njk', templateFields);
+  return { request: req, response: res };
 });
 
 // ======Get my public github info======
@@ -58,6 +62,7 @@ app.get('/apitest', async (req, res) => {
 
   fs.writeFileSync('./local-logs/github.json', JSON.stringify(data));
   res.send(data);
+  return { request: req, response: res };
 });
 
 app.listen(PORT, () => { console.log(`Server listening on port ${PORT}`); });
